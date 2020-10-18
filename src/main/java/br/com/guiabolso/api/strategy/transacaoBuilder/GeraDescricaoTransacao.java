@@ -16,7 +16,7 @@ public class GeraDescricaoTransacao implements IStrategy {
 
 		Transacao transacao = (Transacao) entidade;
 		char[] chaveUnica = transacao.getChaveUnica().toCharArray();
-		String descricao = "transaction ".concat(algoritmoGeraDescricao(chaveUnica));
+		String descricao = "transaction ".concat(geraDescricaoPorAlgoritmo(chaveUnica));
 
 		transacao.setDescricao(descricao.toString());
 		resultado.setErro(false);
@@ -24,7 +24,7 @@ public class GeraDescricaoTransacao implements IStrategy {
 		return resultado;
 	}
 
-	private String algoritmoGeraDescricao(char[] chaveUnica) {
+	private String geraDescricaoPorAlgoritmo(char[] chaveUnica) {
 
 		StringBuilder descricao = new StringBuilder();
 
@@ -38,9 +38,9 @@ public class GeraDescricaoTransacao implements IStrategy {
 					valor++;
 				}
 
-				int va = (int) (valor + 96);
-				if (va > 122) va = va - 122;
-				char consoante = (char) va;
+				int val = (int) (valor + 96);
+				if (val > 122) val = val - 122;
+				char consoante = (char) val;
 				descricao.append(consoante);
 
 			} else {

@@ -9,20 +9,20 @@ import org.springframework.stereotype.Service;
 import br.com.guiabolso.api.domain.entity.Resultado;
 import br.com.guiabolso.api.domain.entity.Transacao;
 import br.com.guiabolso.api.strategy.IStrategy;
+import br.com.guiabolso.api.strategy.transacaoBuilder.GeraChaveUnicaRequisicao;
 import br.com.guiabolso.api.strategy.transacaoBuilder.GeraChaveUnicaTransacao;
-import br.com.guiabolso.api.strategy.transacaoBuilder.GeraDiaTransacao;
 import br.com.guiabolso.api.strategy.transacaoBuilder.GeraDescricaoTransacao;
+import br.com.guiabolso.api.strategy.transacaoBuilder.GeraDiaTransacao;
 import br.com.guiabolso.api.strategy.transacaoBuilder.GeraValorTransacao;
-import br.com.guiabolso.api.strategy.transacaoBuilder.ValidaExistenciaTransacao;
 
 @Service
 public class TransacaoService {
 	
+	@Autowired GeraChaveUnicaRequisicao geraChaveUnicaRequisicao;
 	@Autowired GeraChaveUnicaTransacao geraChaveUnicaTransacao;
 	@Autowired GeraDiaTransacao geraDiaTransacao;
 	@Autowired GeraDescricaoTransacao geraDescricaoTransacao;
 	@Autowired GeraValorTransacao geraValorTransacao;
-	@Autowired ValidaExistenciaTransacao validaExistenciaTransacao;
 	@Autowired Resultado resultado;
 
 	public Resultado processar(Transacao transacao) {
@@ -41,11 +41,11 @@ public class TransacaoService {
 		
 		List<IStrategy> listStrategy = new ArrayList<>();
 		
-		listStrategy.add(geraChaveUnicaTransacao);
 		listStrategy.add(geraDiaTransacao);
+		listStrategy.add(geraChaveUnicaRequisicao);
+		listStrategy.add(geraChaveUnicaTransacao);
 		listStrategy.add(geraDescricaoTransacao);
 		listStrategy.add(geraValorTransacao);
-		listStrategy.add(validaExistenciaTransacao);
 
 		return listStrategy;
 	}

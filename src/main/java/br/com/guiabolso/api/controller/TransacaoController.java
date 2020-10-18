@@ -1,5 +1,8 @@
 package br.com.guiabolso.api.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,50 +17,54 @@ import br.com.guiabolso.api.domain.entity.Transacao;
 import br.com.guiabolso.api.domain.entity.TransacaoInputData;
 import br.com.guiabolso.api.domain.entity.Usuario;
 import br.com.guiabolso.api.domain.model.TransacaoModel;
+import br.com.guiabolso.api.domain.service.MockTransacoesService;
 import br.com.guiabolso.api.domain.service.RequestService;
-import br.com.guiabolso.api.domain.service.TransacaoService;
 
 @RestController
 @RequestMapping("/")
 public class TransacaoController {
-	
+
 	@Autowired private RequestService requestService;
-	@Autowired private TransacaoService transacaoService;
 	@Autowired private ModelMapper modelMapper;
-		
+	@Autowired private MockTransacoesService mockTransacoesService;
+	
 	@ResponseBody
 	@GetMapping("/{id}/transacoes/{ano}/{mes}")
-	public ResponseEntity<TransacaoModel> buscar(@PathVariable Long id, @PathVariable Long ano, @PathVariable Long mes){
-		
+	public ResponseEntity<List<TransacaoModel>> listar(@PathVariable Long id, @PathVariable Long ano, @PathVariable Long mes) {
+
 		TransacaoInputData transacaoInputData = new TransacaoInputData();
-		
 		transacaoInputData.setAno(ano);
 		transacaoInputData.setMes(mes);
 		transacaoInputData.setUsuarioId(id);
-		
+
 		Resultado resultado = requestService.validar(transacaoInputData);
-		Transacao transacao = new Transacao();
-		Usuario usuario = new Usuario();
-		
 		
 		if(!resultado.isErro()) {
+			Transacao transacao = new Transacao();
+			Usuario usuario = new Usuario();
+			
 			transacao.setAno(ano);
 			transacao.setMes(mes);
 			usuario.setId(id);
 			transacao.setUsuario(usuario);
-			transacaoService.processar(transacao);
-		
-		}else {
-			transacao.setDescricao(resultado.getMensagem());
+			
+			resultado = mockTransacoesService.buscar(transacao);
+			
+			if(resultado.getTransacoes() == null)
+				mockTransacoesService.criar(transacao);
+			
+			return ResponseEntity.ok(toCollectionModel(mockTransacoesService.listar(transacao.getChaveRequisicao())));
 		}
-		
-		TransacaoModel transacaoModel = toModel(transacao);
-		return ResponseEntity.ok(transacaoModel);
-		
+			
+		return ResponseEntity.notFound().build();
 	}
-	
+
+	private List<TransacaoModel> toCollectionModel(List<Transacao> transacoes) {
+		return transacoes.stream().map(transacao -> toModel(transacao)).collect(Collectors.toList());
+	}
+
 	private TransacaoModel toModel(Transacao transacao) {
 		return modelMapper.map(transacao, TransacaoModel.class);
 	}
-	
+
 }
