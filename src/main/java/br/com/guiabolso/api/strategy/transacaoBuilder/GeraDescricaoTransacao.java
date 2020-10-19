@@ -16,7 +16,7 @@ public class GeraDescricaoTransacao implements IStrategy {
 
 		Transacao transacao = (Transacao) entidade;
 		char[] chaveUnica = transacao.getChaveUnica().replaceFirst("-", "").toCharArray();
-		String descricao = "transaction ".concat(geraDescricaoPorAlgoritmo(chaveUnica));
+		String descricao = "".concat(geraDescricaoPorAlgoritmo(chaveUnica));
 
 		transacao.setDescricao(descricao.toString());
 		resultado.setErro(false);
