@@ -6,7 +6,16 @@ public class TransacaoDTO {
 	private Long data;
 	private Integer valor;
 	private Boolean duplicated;
+	private int dia;
 	
+	
+	
+	public int getDia() {
+		return dia;
+	}
+	public void setDia(int dia) {
+		this.dia = dia;
+	}
 	public String getDescricao() {
 		return descricao;
 	}
