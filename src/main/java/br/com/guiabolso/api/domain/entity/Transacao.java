@@ -1,7 +1,5 @@
 package br.com.guiabolso.api.domain.entity;
 
-import java.sql.Timestamp;
-
 import br.com.guiabolso.api.domain.IEntidadeDominio;
 
 public class Transacao implements IEntidadeDominio{
@@ -10,13 +8,22 @@ public class Transacao implements IEntidadeDominio{
 	private String descricao;
 	private Integer valor;
 	private Boolean duplicated;
-	private Long mes;
-	private Long ano;
+	private int dia;
+	private int mes;
+	private int ano;
 	private Long data;
 	private String chaveUnica;
 	private String chaveRequisicao;
-	private Timestamp dataCompleta;
 	
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	public String getDescricao() {
 		return descricao;
 	}
@@ -32,14 +39,6 @@ public class Transacao implements IEntidadeDominio{
 	public void setValor(Integer valor) {
 		this.valor = valor;
 	}
-	
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
 
 	public Boolean getDuplicated() {
 		return duplicated;
@@ -48,30 +47,29 @@ public class Transacao implements IEntidadeDominio{
 	public void setDuplicated(Boolean duplicated) {
 		this.duplicated = duplicated;
 	}
-	
-	
-	public Long getMes() {
+
+	public int getDia() {
+		return dia;
+	}
+
+	public void setDia(int dia) {
+		this.dia = dia;
+	}
+
+	public int getMes() {
 		return mes;
 	}
 
-	public void setMes(Long mes) {
+	public void setMes(int mes) {
 		this.mes = mes;
 	}
 
-	public Long getAno() {
+	public int getAno() {
 		return ano;
 	}
 
-	public void setAno(Long ano) {
+	public void setAno(int ano) {
 		this.ano = ano;
-	}
-	
-	public String getChaveUnica() {
-		return chaveUnica;
-	}
-
-	public void setChaveUnica(String chaveUnica) {
-		this.chaveUnica = chaveUnica;
 	}
 
 	public Long getData() {
@@ -82,14 +80,14 @@ public class Transacao implements IEntidadeDominio{
 		this.data = data;
 	}
 
-	public Timestamp getDataCompleta() {
-		return dataCompleta;
+	public String getChaveUnica() {
+		return chaveUnica;
 	}
 
-	public void setDataCompleta(Timestamp dataCompleta) {
-		this.dataCompleta = dataCompleta;
+	public void setChaveUnica(String chaveUnica) {
+		this.chaveUnica = chaveUnica;
 	}
-	
+
 	public String getChaveRequisicao() {
 		return chaveRequisicao;
 	}
@@ -102,7 +100,7 @@ public class Transacao implements IEntidadeDominio{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((dataCompleta == null) ? 0 : dataCompleta.hashCode());
+		result = prime * result + ((data == null) ? 0 : data.hashCode());
 		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
 		result = prime * result + ((valor == null) ? 0 : valor.hashCode());
 		return result;
@@ -117,10 +115,10 @@ public class Transacao implements IEntidadeDominio{
 		if (getClass() != obj.getClass())
 			return false;
 		Transacao other = (Transacao) obj;
-		if (dataCompleta == null) {
-			if (other.dataCompleta != null)
+		if (data == null) {
+			if (other.data != null)
 				return false;
-		} else if (!dataCompleta.equals(other.dataCompleta))
+		} else if (!data.equals(other.data))
 			return false;
 		if (descricao == null) {
 			if (other.descricao != null)
@@ -133,8 +131,5 @@ public class Transacao implements IEntidadeDominio{
 		} else if (!valor.equals(other.valor))
 			return false;
 		return true;
-	}
-	
-	
-	
+	}	
 }

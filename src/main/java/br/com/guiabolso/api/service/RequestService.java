@@ -10,6 +10,7 @@ import br.com.guiabolso.api.domain.entity.Resultado;
 import br.com.guiabolso.api.domain.entity.TransacaoInputData;
 import br.com.guiabolso.api.strategy.IStrategy;
 import br.com.guiabolso.api.strategy.inputValidation.ValidaAnoTransacao;
+import br.com.guiabolso.api.strategy.inputValidation.ValidaConsultaAnoMesFuturo;
 import br.com.guiabolso.api.strategy.inputValidation.ValidaMesTransacao;
 import br.com.guiabolso.api.strategy.inputValidation.ValidaUsuarioId;
 
@@ -19,6 +20,7 @@ public class RequestService {
 	@Autowired ValidaUsuarioId validaUsuarioId;
 	@Autowired ValidaAnoTransacao validaAnoTransacao;
 	@Autowired ValidaMesTransacao validaMesTransacao;
+	@Autowired ValidaConsultaAnoMesFuturo validaConsultaAnoMesFuturo;
 	@Autowired Resultado resultado;
 
 	
@@ -41,6 +43,7 @@ public class RequestService {
 		listStrategy.add(validaUsuarioId);
 		listStrategy.add(validaAnoTransacao);
 		listStrategy.add(validaMesTransacao);
+		listStrategy.add(validaConsultaAnoMesFuturo);
 		
 		return listStrategy;
 	}

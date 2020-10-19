@@ -67,7 +67,7 @@ public class MockTransacoesService {
 	}
 
 	private boolean isMonthToDuplicateTransacao(Transacao transacao) {
-		return MesesTransacoesDuplicadas.getmapMeses().containsValue(transacao.getMes());
+		return MesesTransacoesDuplicadas.getmapMeses().containsValue(new Long(transacao.getMes()));
 	}
 	
 	public Resultado buscar(Transacao transacao) {

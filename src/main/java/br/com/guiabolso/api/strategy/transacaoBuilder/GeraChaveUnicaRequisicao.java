@@ -16,10 +16,10 @@ public class GeraChaveUnicaRequisicao implements IStrategy {
 		Transacao transacao = (Transacao) entidade;
 
 		Long id = transacao.getUsuario().getId();
-		Long ano = transacao.getAno();
-		Long mes = transacao.getMes();
+		int ano = transacao.getAno();
+		int mes = transacao.getMes();
 
-		String chaveRequisicao = id.toString().concat(mes.toString()).concat(ano.toString());
+		String chaveRequisicao = id.toString().concat(String.valueOf(mes)).concat(String.valueOf(ano));
 		transacao.setChaveRequisicao(chaveRequisicao);
 		resultado.setErro(false);
 		return resultado;

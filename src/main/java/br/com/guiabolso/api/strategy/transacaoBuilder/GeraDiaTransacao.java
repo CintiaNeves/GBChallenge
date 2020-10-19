@@ -9,6 +9,7 @@ import java.util.Random;
 import org.springframework.stereotype.Component;
 
 import br.com.guiabolso.api.domain.IEntidadeDominio;
+import br.com.guiabolso.api.domain.entity.MockTransacoes;
 import br.com.guiabolso.api.domain.entity.Resultado;
 import br.com.guiabolso.api.domain.entity.Transacao;
 import br.com.guiabolso.api.strategy.IStrategy;
@@ -22,16 +23,26 @@ public class GeraDiaTransacao implements IStrategy {
 		Transacao transacao = (Transacao) entidade;
 		Random gerador = new Random();
 		
-		Long dia = new Long(Math.abs(gerador.nextInt())) % 30;
-
-		if (transacao.getMes().equals(new Long(2)) && dia > 28)
-			dia = new Long(28);
+		int mesAtual = MockTransacoes.getDataDeHoje().getMonthValue();
+		int anoAtual = MockTransacoes.getDataDeHoje().getYear();
+		int diaAtual = MockTransacoes.getDataDeHoje().getDayOfMonth();
+		
+		int dia = 1;
+		
+		if(transacao.getMes() == mesAtual && transacao.getAno() == anoAtual) {
+			dia = Math.abs(gerador.nextInt()) % diaAtual;
+		}else {
+			dia = Math.abs(gerador.nextInt()) % 30;
+		}
+			
+		if (transacao.getMes() == 2 && dia > 28)
+			dia = 28;
 		
 		if(dia == 0)
 			dia += transacao.getMes();
 		
-		transacao.setData(dia);
-		transacao.setDataCompleta(montaDataTransacao(transacao));
+		transacao.setDia(dia);
+		transacao.setData(montaDataTransacao(transacao).getTime());
 		
 		resultado.setErro(false);
 		return resultado;
@@ -39,8 +50,8 @@ public class GeraDiaTransacao implements IStrategy {
 
 	private Timestamp montaDataTransacao(Transacao transacao) {
 
-		String data = transacao.getData().toString().concat("/").concat(transacao.getMes().toString()).concat("/")
-				.concat(transacao.getAno().toString());
+		String data = String.valueOf(transacao.getDia()).concat("/").concat(String.valueOf(transacao.getMes())).concat("/")
+				.concat(String.valueOf(transacao.getAno()));
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		java.util.Date date = null;
 		

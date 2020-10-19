@@ -1,10 +1,10 @@
 package br.com.guiabolso.api.domain.exception;
 
-public class BusinessException extends RuntimeException{
+public class APIException extends RuntimeException{
 
 	private static final long serialVersionUID = 1L;
 	
-	public BusinessException(String message) {
+	public APIException(String message) {
 		super(message);
 	}
 

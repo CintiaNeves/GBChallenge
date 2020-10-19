@@ -4,20 +4,20 @@ import br.com.guiabolso.api.domain.IEntidadeDominio;
 
 public class TransacaoInputData implements IEntidadeDominio{
 
-	private Long mes;
-	private Long ano;
+	private int mes;
+	private int ano;
 	private Long usuarioId;
 	
-	public Long getMes() {
+	public int getMes() {
 		return mes;
 	}
-	public void setMes(Long mes) {
+	public void setMes(int mes) {
 		this.mes = mes;
 	}
-	public Long getAno() {
+	public int getAno() {
 		return ano;
 	}
-	public void setAno(Long ano) {
+	public void setAno(int ano) {
 		this.ano = ano;
 	}
 	public Long getUsuarioId() {

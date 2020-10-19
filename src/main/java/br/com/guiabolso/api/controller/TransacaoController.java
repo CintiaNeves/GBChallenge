@@ -30,7 +30,7 @@ public class TransacaoController {
 		
 	@ResponseBody
 	@GetMapping("/{id}/transacoes/{ano}/{mes}")
-	public ResponseEntity<List<TransacaoDTO>> listar(@PathVariable Long id, @PathVariable Long ano, @PathVariable Long mes) {
+	public ResponseEntity<List<TransacaoDTO>> listar(@PathVariable Long id, @PathVariable int ano, @PathVariable int mes) {
 
 		TransacaoInputData transacaoInputData = new TransacaoInputData();
 		transacaoInputData.setAno(ano);
