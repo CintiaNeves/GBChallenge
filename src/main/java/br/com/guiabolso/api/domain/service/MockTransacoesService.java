@@ -18,7 +18,6 @@ import br.com.guiabolso.api.strategy.mockTransacoesBuilder.ValidaExistenciaRequi
 public class MockTransacoesService {
 
 	@Autowired CriaListaTransacoes criaListaTransacoes;
-	@Autowired MockTransacoes mockTransacoes;
 	@Autowired Resultado resultado;
 	@Autowired TransacaoService transacaoService;
 	@Autowired ValidaExistenciaRequisicao validaExistenciaRequisicao;
