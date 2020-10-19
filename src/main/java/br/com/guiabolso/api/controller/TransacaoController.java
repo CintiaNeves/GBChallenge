@@ -27,7 +27,7 @@ public class TransacaoController {
 	@Autowired private RequestService requestService;
 	@Autowired private ModelMapper modelMapper;
 	@Autowired private MockTransacoesService mockTransacoesService;
-	
+		
 	@ResponseBody
 	@GetMapping("/{id}/transacoes/{ano}/{mes}")
 	public ResponseEntity<List<TransacaoDTO>> listar(@PathVariable Long id, @PathVariable Long ano, @PathVariable Long mes) {
@@ -58,7 +58,14 @@ public class TransacaoController {
 			
 		return ResponseEntity.notFound().build();
 	}
-
+	
+	@ResponseBody
+	@GetMapping("/")
+	public ResponseEntity<Resultado> inicio(){
+		
+		return ResponseEntity.notFound().build();
+	}
+	
 	private List<TransacaoDTO> toCollectionModel(List<Transacao> transacoes) {
 		return transacoes.stream().map(transacao -> toModel(transacao)).collect(Collectors.toList());
 	}
