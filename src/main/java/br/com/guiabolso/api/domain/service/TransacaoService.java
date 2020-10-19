@@ -25,7 +25,7 @@ public class TransacaoService {
 	@Autowired GeraValorTransacao geraValorTransacao;
 	@Autowired Resultado resultado;
 
-	public Resultado processar(Transacao transacao) {
+	public Resultado processaRegrasCriacao(Transacao transacao) {
 		
 		List<IStrategy> listStrategy = getListStrategy();
 		
