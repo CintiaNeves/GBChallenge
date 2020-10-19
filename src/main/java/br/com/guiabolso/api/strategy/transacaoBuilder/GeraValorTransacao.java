@@ -1,5 +1,7 @@
 package br.com.guiabolso.api.strategy.transacaoBuilder;
 
+import java.util.Random;
+
 import org.springframework.stereotype.Component;
 
 import br.com.guiabolso.api.domain.IEntidadeDominio;
@@ -15,7 +17,9 @@ public class GeraValorTransacao implements IStrategy{
 		
 		Transacao transacao = (Transacao) entidade;
 		
-		Long  valor = new Long(transacao.getChaveUnica()) % 9999999;
+		Random gerador = new Random();
+		
+		Long  valor = new Long(Math.abs(gerador.nextInt()) % 9999999);
 		transacao.setValor(valor.intValue());
 		
 		return resultado;

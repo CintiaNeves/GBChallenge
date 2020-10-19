@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 import br.com.guiabolso.api.domain.IEntidadeDominio;
 import br.com.guiabolso.api.domain.entity.Resultado;
 import br.com.guiabolso.api.domain.entity.TransacaoInputData;
+import br.com.guiabolso.api.domain.enums.Mes;
+import br.com.guiabolso.api.domain.exception.OutOfRangeMonthException;
 import br.com.guiabolso.api.strategy.IStrategy;
 
 @Component
@@ -20,7 +22,8 @@ public class ValidaMesTransacao implements IStrategy{
 		
 		if(MES_MINIMO.valorMes > data.getMes() || MES_MAXIMO.valorMes < data.getMes()) {
 			resultado.setErro(true);
-			resultado.setMensagem("Mês inválido");
+			resultado.setMensagem("Mês inválido, mês deve estar entre " + Mes.MES_MINIMO.valorMes + " e " + Mes.MES_MAXIMO.valorMes + ".");
+			throw new OutOfRangeMonthException(resultado.getMensagem());
 		}else {
 			resultado.setErro(false);
 			resultado.setMensagem("Mês válido");

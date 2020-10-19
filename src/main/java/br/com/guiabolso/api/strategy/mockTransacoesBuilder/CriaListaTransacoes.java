@@ -27,7 +27,6 @@ public class CriaListaTransacoes implements IStrategy {
 			t.setAno(transacaoMolde.getAno());
 			t.setMes(transacaoMolde.getMes());
 			t.setDuplicated(false);
-			t.setIndex(i);
 			u.setId(transacaoMolde.getUsuario().getId());
 			t.setUsuario(u);
 

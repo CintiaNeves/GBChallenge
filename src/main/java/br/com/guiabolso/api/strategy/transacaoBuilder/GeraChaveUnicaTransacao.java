@@ -19,9 +19,8 @@ public class GeraChaveUnicaTransacao implements IStrategy{
 		Long ano = transacao.getAno();
 		Long mes = transacao.getMes();
 		Long dia = transacao.getData();
-		int index = transacao.getIndex();
-		
-		String chaveUnica = id.toString().concat(mes.toString()).concat(ano.toString()).concat(dia.toString()).concat(String.valueOf(index));
+		int valor = transacao.getValor();
+		String chaveUnica = String.valueOf(valor).concat(id.toString().concat(mes.toString()).concat(ano.toString()).concat(dia.toString()).concat(String.valueOf(valor)));
 		transacao.setChaveUnica(chaveUnica);
 		resultado.setErro(false);
 		

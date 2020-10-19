@@ -16,8 +16,7 @@ public class Transacao implements IEntidadeDominio{
 	private String chaveUnica;
 	private String chaveRequisicao;
 	private Timestamp dataCompleta;
-	private int index;
-
+	
 	public String getDescricao() {
 		return descricao;
 	}
@@ -89,15 +88,6 @@ public class Transacao implements IEntidadeDominio{
 
 	public void setDataCompleta(Timestamp dataCompleta) {
 		this.dataCompleta = dataCompleta;
-	}
-	
-	
-	public int getIndex() {
-		return index;
-	}
-
-	public void setIndex(int index) {
-		this.index = index;
 	}
 	
 	public String getChaveRequisicao() {

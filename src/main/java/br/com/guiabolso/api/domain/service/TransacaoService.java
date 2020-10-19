@@ -42,10 +42,10 @@ public class TransacaoService {
 		List<IStrategy> listStrategy = new ArrayList<>();
 		
 		listStrategy.add(geraDiaTransacao);
+		listStrategy.add(geraValorTransacao);
 		listStrategy.add(geraChaveUnicaRequisicao);
 		listStrategy.add(geraChaveUnicaTransacao);
 		listStrategy.add(geraDescricaoTransacao);
-		listStrategy.add(geraValorTransacao);
 
 		return listStrategy;
 	}
