@@ -22,13 +22,11 @@ public class ValidaAnoTransacao implements IStrategy{
 		
 		if(ANO_MINIMO.valorAno > data.getAno() || ANO_MAXIMO.valorAno < data.getAno()) {
 			resultado.setErro(true);
-			resultado.setMensagem("Ano inválido, ano deve estar entre " + Ano.ANO_MINIMO.valorAno + " e " + Ano.ANO_MAXIMO.valorAno + ".");
+			resultado.setMensagem("Invalid year, year must be between " + Ano.ANO_MINIMO.valorAno + " and " + Ano.ANO_MAXIMO.valorAno + ".");
 			throw new OutOfRangeYearException(resultado.getMensagem());
 		}else {
 			resultado.setErro(false);
-			resultado.setMensagem("O Ano é válido");
 		}
-		
 		return resultado;
 	}
 

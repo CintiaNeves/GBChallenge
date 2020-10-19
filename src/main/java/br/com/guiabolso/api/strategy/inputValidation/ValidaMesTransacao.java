@@ -22,11 +22,11 @@ public class ValidaMesTransacao implements IStrategy{
 		
 		if(MES_MINIMO.valorMes > data.getMes() || MES_MAXIMO.valorMes < data.getMes()) {
 			resultado.setErro(true);
-			resultado.setMensagem("Mês inválido, mês deve estar entre " + Mes.MES_MINIMO.valorMes + " e " + Mes.MES_MAXIMO.valorMes + ".");
+			resultado.setMensagem("Invalid month, month must be between " + Mes.MES_MINIMO.valorMes + " and " + Mes.MES_MAXIMO.valorMes + ".");
 			throw new OutOfRangeMonthException(resultado.getMensagem());
 		}else {
 			resultado.setErro(false);
-			resultado.setMensagem("Mês válido");
+			
 		}
 		
 		return resultado;

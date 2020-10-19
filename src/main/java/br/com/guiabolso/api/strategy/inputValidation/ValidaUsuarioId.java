@@ -21,7 +21,7 @@ public class ValidaUsuarioId implements IStrategy{
 		
 		if(ID_MINIMO.valorId > data.getUsuarioId() || ID_MAXIMO.valorId < data.getUsuarioId()) {
 			resultado.setErro(true);
-			resultado.setMensagem("Usuario não encontrado. O ID do usuário deve estar entre 1.000 e 100.000.000.");
+			resultado.setMensagem("User not found. User ID must be between 1,000 and 100,000,000.");
 			throw new UserNotFoundException(resultado.getMensagem());
 		}else {
 			resultado.setErro(false);
