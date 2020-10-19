@@ -1,10 +1,10 @@
 package br.com.guiabolso.api.domain.exception;
 
-public class EntityNotFoundException extends BusinessException{
+public class UserNotFoundException extends BusinessException{
 
 	private static final long serialVersionUID = 1L;
 
-	public EntityNotFoundException(String message) {
+	public UserNotFoundException(String message) {
 		super(message);
 		
 	}

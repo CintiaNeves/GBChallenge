@@ -13,28 +13,15 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import br.com.guiabolso.api.domain.exception.BusinessException;
-import br.com.guiabolso.api.domain.exception.EntityNotFoundException;
 import br.com.guiabolso.api.domain.exception.OutOfRangeMonthException;
 import br.com.guiabolso.api.domain.exception.OutOfRangeYearException;
+import br.com.guiabolso.api.domain.exception.UserNotFoundException;
 
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler{
-		
-	@ExceptionHandler(BusinessException.class)
-	public ResponseEntity<Object> handlerNegocio(BusinessException ex, WebRequest request) {
-		
-		HttpStatus status = BAD_REQUEST;
-		Exception exception = new Exception();
-		exception.setStatus(status.value());
-		exception.setTitulo(ex.getMessage());
-		exception.setDataHora(OffsetDateTime.now());
-		
-		return handleExceptionInternal(ex, exception, new HttpHeaders(), status, request);
-	}
-	
-	@ExceptionHandler(EntityNotFoundException.class)
-	public ResponseEntity<Object> handlerEntityNotFound(BusinessException ex, WebRequest request) {
+			
+	@ExceptionHandler(UserNotFoundException.class)
+	public ResponseEntity<Object> handlerEntityNotFound(UserNotFoundException ex, WebRequest request) {
 		
 		HttpStatus status = NOT_FOUND;
 		Exception exception = new Exception();

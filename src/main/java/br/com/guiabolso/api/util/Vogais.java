@@ -1,4 +1,4 @@
-package br.com.guiabolso.api.domain.util;
+package br.com.guiabolso.api.util;
 
 import java.util.HashMap;
 import java.util.Map;

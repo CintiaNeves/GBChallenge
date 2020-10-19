@@ -1,4 +1,4 @@
-package br.com.guiabolso.api.domain.service;
+package br.com.guiabolso.api.service;
 
 import java.util.ArrayList;
 import java.util.List;

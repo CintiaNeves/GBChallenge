@@ -1,4 +1,4 @@
-package br.com.guiabolso.api.domain.service;
+package br.com.guiabolso.api.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 import br.com.guiabolso.api.domain.entity.MockTransacoes;
 import br.com.guiabolso.api.domain.entity.Resultado;
 import br.com.guiabolso.api.domain.entity.Transacao;
-import br.com.guiabolso.api.domain.util.MesesTransacoesDuplicadas;
 import br.com.guiabolso.api.strategy.IStrategy;
 import br.com.guiabolso.api.strategy.mockTransacoesBuilder.CriaListaTransacoes;
 import br.com.guiabolso.api.strategy.mockTransacoesBuilder.ValidaExistenciaRequisicao;
+import br.com.guiabolso.api.util.MesesTransacoesDuplicadas;
 
 @Service
 public class MockTransacoesService {

@@ -1,6 +1,6 @@
-package br.com.guiabolso.api.domain.model;
+package br.com.guiabolso.api.domain.dto;
 
-public class TransacaoModel {
+public class TransacaoDTO {
 
 	private String descricao;
 	private Long data;

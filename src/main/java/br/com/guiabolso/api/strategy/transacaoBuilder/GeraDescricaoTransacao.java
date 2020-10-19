@@ -5,8 +5,8 @@ import org.springframework.stereotype.Component;
 import br.com.guiabolso.api.domain.IEntidadeDominio;
 import br.com.guiabolso.api.domain.entity.Resultado;
 import br.com.guiabolso.api.domain.entity.Transacao;
-import br.com.guiabolso.api.domain.util.Vogais;
 import br.com.guiabolso.api.strategy.IStrategy;
+import br.com.guiabolso.api.util.Vogais;
 
 @Component
 public class GeraDescricaoTransacao implements IStrategy {
