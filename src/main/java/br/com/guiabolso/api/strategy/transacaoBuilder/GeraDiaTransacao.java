@@ -43,9 +43,7 @@ public class GeraDiaTransacao implements IStrategy {
 		
 		transacao.setDia(dia);
 		transacao.setData(montaDataTransacao(transacao).getTime());
-		
-		System.out.println(new Timestamp(transacao.getData()));
-		
+	
 		resultado.setErro(false);
 		return resultado;
 	}
